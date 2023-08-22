@@ -30,5 +30,34 @@ function drawHex(ctx, layout, hex, style={}) {
 }
 
 drawHex(ctx, l, x);
+//HexDraw.drawGrid({id: "grid", labels: true,
+  //        layout: new Layout(Layout.pointy, new Point(25, 25), new Point(0, 0))});
+
+function HexMap (top, bottom, left, right /*Hex coords*/) {
+  let map = [];
+  console.log("map start: ", map);
+  for (let r = top; r <= bottom; r++) {
+    let r_offset = Math.floor(r / 2);
+    for (let q = (left - r_offset); q <= (right - r_offset); q++) {
+      map.push(new Hex(q, r, -q-r));
+      console.log("Pushing...");
+    }
+  }
+  return map;
+}
+
+let m = HexMap(0, 6, 0, 4);
+console.log(m);
+
+function drawMap (ctx, map, id) {
+  let layout = new Layout(Layout.pointy, new Point(25, 25), new Point(0, 0));
+  for (let i = 0; i < map.length; i++) {
+    drawHex(ctx, l, new Hex(map[i].q, map[i].r, map[i].s));
+  }
+  return;
+}
+
+drawMap(ctx, m, "");
+
 HexDraw.drawGrid({id: "grid", labels: true,
-          layout: new Layout(Layout.pointy, new Point(25, 25), new Point(0, 0))});
+          layout: new Layout(Layout.pointy, new Point(25, 25), new Point(0, 0)), hexes: m})
