@@ -64,6 +64,10 @@ export class Hex {
 Hex.directions = [new Hex(1, 0, -1), new Hex(1, -1, 0), new Hex(0, -1, 1), new Hex(-1, 0, 1), new Hex(-1, 1, 0), new Hex(0, 1, -1)];
 Hex.diagonals = [new Hex(2, -1, -1), new Hex(1, -2, 1), new Hex(-1, -1, 2), new Hex(-2, 1, 1), new Hex(-1, 2, -1), new Hex(1, 1, -2)];
 
+
+/* Point class
+ * Simple (X, Y) point helper class
+ */
 export class Point {
 		constructor(x, y) {
 				this.x = x;
@@ -71,6 +75,11 @@ export class Point {
 		}
 }
 
+
+/* Orientation class
+ * Layout helper class that stores whether the display grid is pointy (point up)
+ * or flat (flat edge up)
+ */
 export class Orientation {
 	constructor(f0, f1, f2, f3, b0, b1, b2, b3, start_angle) {
 		this.f0 = f0;
@@ -85,6 +94,14 @@ export class Orientation {
 	}
 }
 
+
+/* Layout class
+ * Convert between hex coordinates and screen coordinates
+ * Constructor params:
+ *     orientation: An Orientation object, either Layout.pointy or Layout.flat
+ *     size: A Point object with the X and Y dimensions of the Hexes, in pixels
+ *     origin: A Point object that is the X and Y of the origin of the Layout
+ */
 export class Layout {
 	constructor(orientation, size, origin) {
 		this.orientation = orientation;

@@ -12,6 +12,14 @@ import { Point } from "./HexGrid.js"
 import { Orientation} from "./HexGrid.js"
 import { Layout } from "./HexGrid.js"
 
+
+/* drawHex
+ * Draw a Hex object to the screen
+ * param ctx: <canvas> drawing context (must be 2d)
+ * param layout: a Layout object
+ * param hex: a Hex object
+ * param style{}:
+ */
 export function drawHex(ctx, layout, hex, style={}) {
     var corners = layout.polygonCorners(hex);
     ctx.beginPath();
@@ -27,7 +35,10 @@ export function drawHex(ctx, layout, hex, style={}) {
     ctx.stroke();
 }
 
-
+/* colorForHex
+ * Find stylings to the Hex on the screen
+ * param hex: a Hex object
+ */
 export function colorForHex(hex) {
     // Match the color style used in the main article
     if (hex.q === 0 && hex.r === 0 && hex.s === 0) {
@@ -43,7 +54,13 @@ export function colorForHex(hex) {
     }
 }
 
-
+/* drawHexLabel
+ * Apply a label to the Hex on the screen
+ * param ctx: <canvas> drawing context (must be 2d)
+ * param layout: a Layout object
+ * param hex: a Hex object
+ * param style{}:
+ */
 export function drawHexLabel(ctx, layout, hex, style={}) {
     const pointSize = Math.round(0.5 * Math.min(Math.abs(layout.size.x), Math.abs(layout.size.y)));
     var center = layout.hexToPixel(hex);
@@ -54,7 +71,6 @@ export function drawHexLabel(ctx, layout, hex, style={}) {
     Object.assign(ctx, style);
     ctx.fillText(hex.hexLength() === 0? "q,r,s" : (hex.q + "," + hex.r + "," + hex.s), center.x, center.y);
 }
-
 
 export function permuteQRS(q, r, s) { return new Hex(q, r, s); }
 export function permuteSRQ(s, r, q) { return new Hex(q, r, s); }
@@ -73,7 +89,6 @@ export function shapeParallelogram(q1, r1, q2, r2, constructor) {
     return hexes;
 }
 
-
 export function shapeTriangle1(size) {
     var hexes = [];
     for (var q = 0; q <= size; q++) {
@@ -84,7 +99,6 @@ export function shapeTriangle1(size) {
     return hexes;
 }
 
-
 export function shapeTriangle2(size) {
     var hexes = [];
     for (var q = 0; q <= size; q++) {
@@ -94,7 +108,6 @@ export function shapeTriangle2(size) {
     }
     return hexes;
 }
-
 
 export function shapeHexagon(size) {
     var hexes = [];
@@ -107,7 +120,6 @@ export function shapeHexagon(size) {
     }
     return hexes;
 }
-
 
 export function shapeRectanglePointy(left, top, right, bottom) {
     let hexes = [];
@@ -144,7 +156,14 @@ export function shapeRectangleArbitrary(w, h, constructor) {
     return hexes;
 }
 
-
+/* drawGrid
+ * Draw a grid of Hexes onto the screen
+ * param id: the id field for the canvas, i.e. <canvas id="param">
+ * param labels: Boolean that is true if labels are to be drawn
+ * param layout: a Layout object
+ * param hexes: a map of Hex objects, i.e. a Hex data structure
+ * param xMarkers, yMarkers: I (Giancarlo) don't know what these do.  They're optional!
+ */
 export function drawGrid({id, labels, layout, hexes, axes, xMarkers, yMarkers}) {
     const margin = axes ? {left: 30, right: 2, top: 2, bottom: 20} : {left: 0, right: 0, top: 0, bottom: 0};
     labels = labels ?? false;

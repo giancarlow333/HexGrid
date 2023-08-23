@@ -46,10 +46,11 @@ function HexMap (top, bottom, left, right /*Hex coords*/) {
   return map;
 }
 
-let m = HexMap(-6, 6, -5, 5);
+let m = HexMap(-6, 6, -5, 5); // -x, +x, -y, +y bounds
 console.log(m);
 
-function drawMap (ctx, map, id) {
+// draw the map to the screen
+function drawMap (ctx, map) {
   let layout = new Layout(Layout.pointy, new Point(25, 25), new Point(0, 0));
   for (let i = 0; i < map.length; i++) {
     drawHex(ctx, l, new Hex(map[i].q, map[i].r, map[i].s));
@@ -57,7 +58,9 @@ function drawMap (ctx, map, id) {
   return;
 }
 
-drawMap(ctx, m, "");
+drawMap(ctx, m);
 
 HexDraw.drawGrid({id: "grid", labels: true,
           layout: new Layout(Layout.pointy, new Point(25, 25), new Point(0, 0)), hexes: m})
+
+// Layout(orienation, size of hex, hexmap orgin on canvas)
