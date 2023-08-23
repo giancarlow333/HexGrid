@@ -46,7 +46,7 @@ function HexMap (top, bottom, left, right /*Hex coords*/) {
   return map;
 }
 
-let m = HexMap(0, 6, 0, 4);
+let m = HexMap(-6, 6, -5, 5);
 console.log(m);
 
 function drawMap (ctx, map, id) {
