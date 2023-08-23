@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.0.1 - 2023-08-21
 
+### Added
+
 * Add HexDraw.js file, copied from [redblobgames.com](https://www.redblobgames.com/grids/hexagons/implementation.js?2023-04-18-20-36-24).  Changes were made to support its use with my existing functions.  In particular:
     * I deleted all invocations of drawGrid, i.e. from line 232 on down.
     * I imported my Hex classes from HexGrid.js

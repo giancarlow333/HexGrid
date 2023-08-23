@@ -79,6 +79,13 @@ export function permuteRQS(r, q, s) { return new Hex(q, r, s); }
 export function permuteRSQ(r, s, q) { return new Hex(q, r, s); }
 export function permuteQSR(q, s, r) { return new Hex(q, r, s); }
 
+
+
+/*
+ *
+ * MAP FUNCTIONS
+ *
+ */
 export function shapeParallelogram(q1, r1, q2, r2, constructor) {
     var hexes = [];
     for (var q = q1; q <= q2; q++) {
